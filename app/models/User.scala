@@ -26,7 +26,7 @@ object User {
     }
   }
  
-  def show(id: String): User = {
+  def findById(id: String): User = {
     DB.withConnection { implicit connection =>
       SQL(
         """select * from User where user_id = {userId}"""

@@ -18,7 +18,7 @@ object UserController extends ScalaController {
 
   def show(id: String) = RequiresAuthentication(Constant.GoogleOpenId) { profile =>
     Action { request =>
-      val user = User.show(id)
+      val user = User.findById(id)
       Ok(JsonUtil.toJson(user))
     }
   }
