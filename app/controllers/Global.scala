@@ -8,7 +8,6 @@ import org.pac4j.play.Config
 import org.pac4j.play.Constants
 import org.slf4j.LoggerFactory
 
-import play.api.Application
 import play.api.GlobalSettings
 import play.api.Play
 import play.api.Play.current
@@ -27,7 +26,7 @@ object Global extends GlobalSettings {
       views.html.error500.render()))
   }
 
-  override def onStart(app: Application) {
+  override def onStart(app: play.api.Application) {
     Config.setErrorPage401(views.html.error401.render().toString())
     Config.setErrorPage403(views.html.error403.render().toString())
 

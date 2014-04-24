@@ -16,18 +16,18 @@ class ApplicationSpec extends Specification {
 
   "Not Login" should {
 
-    "send 404 on a bad request" in new WithApplication{
+    "send 404 on a bad request" in new WithApplication(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
       route(FakeRequest(GET, "/boum")) must beNone
     }
 
-    "root path redirect to home page" in new WithApplication{
+    "root path redirect to home page" in new WithApplication(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
       val home = route(FakeRequest(GET, "/")).get
 
       status(home) must equalTo(SEE_OTHER)
       redirectLocation(home) must equalTo(Some("/home/"))
     }
 
-    "not Login home path redirect to login page" in new WithApplication{
+    "not Login home path redirect to login page" in new WithApplication(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
       val home = route(FakeRequest(GET, "/home/")).get
 
       status(home) must equalTo(SEE_OTHER)
@@ -38,7 +38,7 @@ class ApplicationSpec extends Specification {
 
   "Logined" should {
 
-    "Logined home page" in new WithApplication{
+    "Logined home page" in new WithApplication(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
       val home = route(FakeRequest(GET, "/home/").withSession(("pac4jSessionId", "sessiontest"))).get
 
       status(home) must equalTo(OK)
