@@ -57,7 +57,7 @@ object Global extends GlobalSettings {
       // publicのhtmlのパスのみ認証チェックする。
       var newSession = request.session
       val optionSessionId = newSession.get(Constants.SESSION_ID)
-      if (!optionSessionId.isDefined) {
+      if (optionSessionId.isEmpty) {
         Some(Action{ Redirect("/login")})
       } else {
         super.onRouteRequest(request)
