@@ -1,4 +1,4 @@
 kaikoma project intrasns  
 =========================== 
 
-JIRA連携　あ
+JIRA連携　あい
