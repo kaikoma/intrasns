@@ -1,4 +1,5 @@
 kaikoma project intrasns  
 =========================== 
 
-JIRA連携　あいうえ
+https://travis-ci.org/kaikoma/intrasns.svg?branch=master
+
