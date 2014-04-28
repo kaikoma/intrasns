@@ -43,7 +43,9 @@
     "karma-phantomjs-launcher": "~0.1.0",
     "karma-html2js-preprocessor": "~0.1.0",
     "karma-requirejs": "~0.2.0",
-    "karma-script-launcher": "~0.1.0" 
+    "karma-script-launcher": "~0.1.0",
+    "grunt-express-server": "^0.4.17",
+    "express": "3.5.2"
   },
   "engines": {
     "node": ">=0.8.0"

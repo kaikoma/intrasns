@@ -1,0 +1,24 @@
+<h2>ユーザ登録</h2>
+<br />
+<div class="container">
+  <form novalidate name="userInfo">
+    <div class="form-group">
+      <label for="inputUserId">ユーザID</label>
+      <input type="text" class="form-control" id="inputUserId" placeholder="ユーザID" ng-model="user.userId" required />
+    </div>
+    <div class="form-group">
+      <label for="inputUserName">ユーザ名</label>
+      <input type="text" class="form-control" id="inputUserName" placeholder="ユーザ名" ng-model="user.name" required />
+    </div>
+    <div class="form-group">
+      <label for="inputEmail">E-mail</label>
+      <input type="email" class="form-control" id="inputEmail" placeholder="E-mail" ng-model="user.email" required />
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" ng-model="user.adminFlg" ng-init="user.adminFlg='0'" ng-true-value="1" ng-false-value="0" />管理者</label>
+    </div>
+    <button type="submit" class="btn btn-primary" ng-click="submit()" ng-disabled="userInfo.$invalid" >登録</button>
+    <button class="btn btn-primary" ng-click="cancel()" >キャンセル</button>
+  </form>
+</div>
+<br />

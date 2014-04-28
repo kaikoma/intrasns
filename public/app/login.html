@@ -12,39 +12,43 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="/styles/main.css">
     <!-- endbuild -->
     <style type="text/css">
       .modal-body { height: 100px; }
+      body {
+        background-image: url("/images/wood-pattern.jpg");
+        background-repeat: repeat;
+      }
     </style>
   </head>
 
-  <body ng-app="angApp">
+  <body>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
         <!--login modal-->
-<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-  <div class="modal-content">
-      <div class="modal-header">
-          <h1 class="text-center">Login</h1>
-      </div>
-      <div class="modal-body">
-          <form action="/googleauth" method="POST" class="form col-md-12 center-block">
-            <div class="form-group">
-              <input type="hidden" name="openIdUser" value="https://www.google.com/accounts/o8/id" />
-              <input type="submit" class="btn btn-primary btn-lg btn-block" value="Login with Google OpenID" />
-            </div>
-          </form>
-      </div>
-      </div>
-  </div>
+<div id="loginModal" class="modal show mdl">
+  <div class="modal-dialog mdl-dl">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="text-center">Login</h1>
+        </div>
+        <div class="modal-body">
+            <form action="/googleauth" method="POST" class="form col-md-12 center-block">
+              <div class="form-group">
+                <input type="hidden" name="openIdUser" value="https://www.google.com/accounts/o8/id" />
+                <input type="submit" class="btn btn-primary btn-lg btn-block" value="Login with Google OpenID" />
+              </div>
+            </form>
+        </div>
+        </div>
+    </div>
   </div>
 </div>
       
@@ -55,15 +59,21 @@
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/jquery/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+    <script>
+    $(function() {
+        $(".mdl").css(
+        {
+            'padding-top': function () {
+                return ($(this).height() / 2 - $(".mdl-dl").height());
+            }
+        });
+    });
+    </script>
 
 </body>
 </html>

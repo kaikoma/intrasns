@@ -13,6 +13,7 @@
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
@@ -24,8 +25,18 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div class="container">
+        <!-- Header content -->
+        <div ng-include="'/views/header.html'"></div>
+
+        <!-- Add your site or application content here -->
+        <div class="main">
+        <div ng-view=""></div>
+        </div>
+        
+        <!-- Footer content -->
+        <div ng-include="'/views/footer.html'"></div>
+    </div>
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -46,7 +57,9 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="/scripts/app.js"></script>
-        <script src="/scripts/controllers/main.js"></script>
+        <script src="/scripts/services/userservice.js"></script>
+        <script src="/scripts/controllers/homecontroller.js"></script>
+        <script src="/scripts/controllers/usercontroller.js"></script>
         <!-- endbuild -->
 </body>
 </html>

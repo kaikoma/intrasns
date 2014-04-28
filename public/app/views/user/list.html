@@ -1,0 +1,35 @@
+<h2>ユーザ一覧</h2>
+<br />
+<a href="#/users/new"><button class="btn btn-primary" >新規作成</button></a>
+<br /><br />
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>
+        <a href="" ng-click="sort('userId');" >ユーザID</a> <span class="icon"><i ng-class="sortIcon['userId']"></i></span><br />
+        <input type="text" ng-model="activefilter.userId">
+      </th>
+      <th>
+        <a href="" ng-click="sort('name');" >氏名</a> <span class="icon"><i ng-class="sortIcon['name']"></i></span><br />
+        <input type="text" ng-model="activefilter.name">
+      </th>
+      <th>
+        <a href="" ng-click="sort('email');" >メールアドレス</a> <span class="icon"><i ng-class="sortIcon['email']"></i></span><br />
+        <input type="text" ng-model="activefilter.email">
+      </th>
+      <th>
+        <a href="" ng-click="sort('adminFlg');" >管理者</a> <span class="icon"><i ng-class="sortIcon['adminFlg']"></i></span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in users | filter: activefilter | orderBy: predicate: reverse">
+      <td><a href="#/users/edit/{{user.id}}">{{user.userId}}</a></td>
+      <td>{{user.name}}</td>
+      <td>{{user.email}}</td>
+      <td><span ng-show="{{user.adminFlg == '1'}}">管理者</span></td>
+    </tr>
+  </tbody>
+</table>
+<label><input type="checkbox" ng-model="activefilter.resignationFlg" ng-init="activefilter.resignationFlg='0'" ng-true-value="1" ng-false-value="0" />退職者表示</label>
+<br />

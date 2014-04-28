@@ -45,6 +45,14 @@ module.exports = function (grunt) {
       gruntfile: {
         files: ['Gruntfile.js']
       },
+      express: {
+        files:  [ 'server.js' ],
+        tasks:  [ 'express:dev' ],
+        options: {
+          livereload: true,
+          spawn: false // for grunt-contrib-watch v0.5.0+, "nospawn: true" for lower versions. Without this option specified express won't be reloaded
+        }
+      },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -87,6 +95,15 @@ module.exports = function (grunt) {
       dist: {
         options: {
           base: '<%= yeoman.dist %>'
+        }
+      }
+    },
+
+    // Express server settings
+    express: {
+      dev: {
+        options: {
+          script: 'server.js'
         }
       }
     },
@@ -369,6 +386,8 @@ module.exports = function (grunt) {
     'usemin',
     'htmlmin'
   ]);
+
+  grunt.registerTask('ex', [ 'express:dev', 'watch' ]);
 
   grunt.registerTask('default', [
     'newer:jshint',

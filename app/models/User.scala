@@ -6,17 +6,20 @@ import anorm._
 import anorm.SqlParser._
 import play.api.libs.json.Json
  
-case class User(userId: String, position: Option[String], workLocation: String)
+case class User(id: Option[Long], userId: String, name: String, email: String, resignationFlg: String, adminFlg: String)
 
 object User {
 
   implicit val userFormat = Json.format[User]
  
   val simple = {
+    get[Option[Long]]("id") ~
     get[String]("user_id") ~
-    get[Option[String]]("position") ~
-    get[String]("work_location") map {
-      case user_id~position~work_location => User(user_id, position, work_location)
+    get[String]("name") ~
+    get[String]("email") ~
+    get[String]("resignation_flg") ~
+    get[String]("admin_flg")  map {
+      case id~user_id~name~email~resignation_flg~admin_flg => User(id, user_id, name, email, resignation_flg, admin_flg)
     }
   }
  
@@ -29,23 +32,25 @@ object User {
   def findById(id: String): User = {
     DB.withConnection { implicit connection =>
       SQL(
-        """select * from User where user_id = {userId}"""
-      ).on("userId" -> id).as(User.simple.single)
+        """select * from User where id = {id}"""
+      ).on("id" -> id).as(User.simple.single)
     }
   }
 
-  def create(user: User): Unit = {
+  def create(user: User): Long = {
     DB.withConnection { implicit connection =>
       SQL(
         """
-          insert into User(user_id, position, work_location)
-          values ({userId}, {position}, {workLocation})
+          insert into User(user_id, name, email, resignation_flg, admin_flg)
+          values ({userId}, {name}, {email}, {resignationFlg}, {adminFlg})
         """
         ).on(
         'userId -> user.userId,
-        'position -> user.position,
-        'workLocation -> user.workLocation
-      ).executeUpdate()
+        'name -> user.name,
+        'email -> user.email,
+        'resignationFlg -> user.resignationFlg,
+        'adminFlg -> user.adminFlg
+      ).executeInsert(scalar[Long].single)
     }
   }
 
@@ -55,14 +60,19 @@ object User {
         """
           UPDATE User SET
             user_id = {userId},
-            position = {position},
-            work_location = {workLocation}
-          WHERE user_id = {userId}
+            name = {name},
+            email = {email},
+            resignation_flg = {resignationFlg},
+            admin_flg = {adminFlg}
+          WHERE id = {id}
         """
         ).on(
+        'id -> user.id,
         'userId -> user.userId,
-        'position -> user.position,
-        'workLocation -> user.workLocation
+        'name -> user.name,
+        'email -> user.email,
+        'resignationFlg -> user.resignationFlg,
+        'adminFlg -> user.adminFlg
       ).executeUpdate()
     }
   }
@@ -72,10 +82,10 @@ object User {
       SQL(
         """
           DELETE FROM User
-          WHERE user_id = {userId}
+          WHERE id = {id}
         """
         ).on(
-        'userId -> id
+        'id -> id
       ).executeUpdate()
     }
   }

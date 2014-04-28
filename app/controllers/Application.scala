@@ -24,7 +24,7 @@ object Application extends ScalaController {
       val currentuser = Json.toJson(
               Map(
                 "email" -> profile.getEmail(),
-                "display_name" -> name))
+                "displayName" -> name))
       Ok(currentuser)
     }
   }

@@ -26,8 +26,9 @@ object UserController extends ScalaController {
   def create() = RequiresAuthentication(Constant.GoogleOpenId) { profile =>
     Action { request =>
       val user = request.body.asJson.get.as[User]
-      User.create(user)
-      Ok("ユーザ登録完了")
+      val userId = User.create(user)
+      val createdUser = User.findById(userId.toString)
+      Ok(JsonUtil.toJson(createdUser))
     }
   }
 
@@ -35,14 +36,15 @@ object UserController extends ScalaController {
     Action { request =>
       val user = request.body.asJson.get.as[User]
       User.update(user)
-      Ok("ユーザ更新完了")
+      Ok(JsonUtil.toJson(user))
     }
   }
 
   def delete(id: String) = RequiresAuthentication(Constant.GoogleOpenId) { profile =>
     Action { request =>
+      val user = User.findById(id)
       User.delete(id)
-      Ok("ユーザ削除完了")
+      Ok(JsonUtil.toJson(user))
     }
   }
 

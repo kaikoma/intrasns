@@ -31,6 +31,18 @@ body {
   border-top: 1px solid #e5e5e5;
 }
 
+.active-sort-icon {
+  color: #000000;
+}
+.inactive-sort-icon {
+  color: #A9A9A9;
+}
+
+.table>thead>tr>th {
+  vertical-align: middle;
+  text-align: center;
+}
+
 /* Customize container */
 @media (min-width: 768px) {
   .container {
