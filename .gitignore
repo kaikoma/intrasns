@@ -13,11 +13,12 @@ dist
 /.project
 /RUNNING_PID
 /.settings
-/public/node_modules
-/public/dist
-/public/.tmp
-/public/.sass-cache
-/public/app/bower_components
+/ngapp/node_modules
+/ngapp/dist
+/ngapp/.tmp
+/ngapp/.sass-cache
+/ngapp/app/bower_components
+/public
 /.cache
 /.target
 bin

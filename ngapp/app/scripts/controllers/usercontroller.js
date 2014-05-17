@@ -2,7 +2,9 @@
 
 var angApp = angular.module('angApp');
 
-angApp.controller('UserListCtrl', function($scope, users) {
+angApp.controller('UserListCtrl', ['$scope', 'users',
+  function($scope, users) {
+
   $scope.users = users;
   $scope.predicate = 'userId';
   $scope.reverse = false;
@@ -34,9 +36,11 @@ angApp.controller('UserListCtrl', function($scope, users) {
       }
     }
   };
-});
+}]);
 
-angApp.controller('UserNewCtrl', function($scope, $location, User) {
+angApp.controller('UserNewCtrl', ['$scope', '$location', 'User',
+  function($scope, $location, User) {
+
   $scope.user = new User();
 
   $scope.submit = function() {
@@ -48,9 +52,11 @@ angApp.controller('UserNewCtrl', function($scope, $location, User) {
   $scope.cancel = function() {
     $location.path('/users/');
   };
-});
+}]);
 
-angApp.controller('UserEditCtrl', function($scope, $location, $routeParams, User, user) {
+angApp.controller('UserEditCtrl', ['$scope', '$location', '$routeParams', 'User', 'user',
+  function($scope, $location, $routeParams, User, user) {
+
   $scope.user = user;
   console.log($scope.user);
 
@@ -66,4 +72,4 @@ angApp.controller('UserEditCtrl', function($scope, $location, $routeParams, User
     $location.path('/users/');
   };
 
-});
+}]);

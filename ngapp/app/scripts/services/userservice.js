@@ -1,6 +1,6 @@
 'use strict';
 
-var angApp = angular.module('angApp');
+var angApp = angular.module('angApp.service', []);
 
 angApp.factory('User', ['$resource', function($resource) {
   return $resource('/users/:id', {id: '@id'});
