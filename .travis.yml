@@ -1,4 +1,24 @@
 language: scala
 scala:
    - 2.10.2
-script: sbt test
+node_js:
+  - 0.10
+
+ # whitelist
+#branches:
+#  only:
+#    - master
+#    - development
+
+before_script:
+  - npm install -g bower grunt-cli
+  - cd ngapp
+  - bower install
+  - npm install
+  - grunt --force build
+  - cd ../
+  - chmod +x test/ci-execution.sh
+
+script:
+  - test/ci-execution.sh
+
