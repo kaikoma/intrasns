@@ -43,6 +43,10 @@ body {
   text-align: center;
 }
 
+.has-error {
+  color: #ff0000;
+}
+
 /* Customize container */
 @media (min-width: 768px) {
   .container {

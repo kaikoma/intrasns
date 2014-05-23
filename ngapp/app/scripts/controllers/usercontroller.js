@@ -42,6 +42,7 @@ angApp.controller('UserNewCtrl', ['$scope', '$location', 'User',
   function($scope, $location, User) {
 
   $scope.user = new User();
+  $scope.submitValue = '登録';
 
   $scope.submit = function() {
     $scope.user.resignationFlg = '0';
@@ -58,7 +59,8 @@ angApp.controller('UserEditCtrl', ['$scope', '$location', '$routeParams', 'User'
   function($scope, $location, $routeParams, User, user) {
 
   $scope.user = user;
-  console.log($scope.user);
+  $scope.submitValue = '変更';
+  $scope.showdelete = true;
 
   $scope.submit = function() {
     User.save({}, $scope.user);

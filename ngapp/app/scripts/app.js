@@ -29,7 +29,7 @@ angular.module('angApp', [
     })
     .when('/users/new', {
       controller: 'UserNewCtrl',
-      templateUrl: '/views/user/new.html'
+      templateUrl: '/views/user/edit.html'
     })
     .when('/users/edit/:id', {
       controller: 'UserEditCtrl',
