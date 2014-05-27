@@ -15,6 +15,8 @@ GET     /users/:id                  controllers.UserController.show(id: String)
 POST    /users/:id                  controllers.UserController.update(id: String)
 DELETE  /users/:id                  controllers.UserController.delete(id: String)
 
+POST    /json                       controllers.PostController.jsontest()
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /login               controllers.Assets.at(path="/public", file="login.html")
 GET     /home/               controllers.Assets.at(path="/public", file="home.html")

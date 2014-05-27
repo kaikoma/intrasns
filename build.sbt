@@ -12,6 +12,7 @@ libraryDependencies ++= Seq(
   "org.pac4j" % "pac4j-http" % "1.5.0",
   "org.pac4j" % "pac4j-openid" % "1.5.0",
   "mysql" % "mysql-connector-java" % "5.1.30",
+  "org.mongodb" %% "casbah" % "2.7.2",
   "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.1.3"
 )
 
